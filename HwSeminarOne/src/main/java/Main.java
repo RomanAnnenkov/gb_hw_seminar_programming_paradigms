@@ -18,9 +18,9 @@ public class Main {
     }
 
     public static void sortImperative(List<Integer> intList) {
-        int listSize = intList.size();
-        while (listSize > 0) {
-            for (int i = 0; i < listSize - 1; i++) {
+        int unsortedListSize = intList.size();
+        while (unsortedListSize > 0) {
+            for (int i = 0; i < unsortedListSize - 1; i++) {
                 int currentElement = intList.get(i);
                 int nextElement = intList.get(i + 1);
                 if (currentElement > nextElement) {
@@ -28,7 +28,7 @@ public class Main {
                     intList.set(i, nextElement);
                 }
             }
-            listSize -= 1;
+            unsortedListSize -= 1;
         }
     }
 
