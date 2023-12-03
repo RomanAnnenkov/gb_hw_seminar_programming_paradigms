@@ -6,7 +6,7 @@ public class TicTacToeGame {
     private final Player playerOne;
     private final Player playerTwo;
     private final TicTacToeField field;
-    private int movesCount = 0;
+    private boolean moveSwitch = true;
 
     public TicTacToeGame(Player playerOne, Player playerTwo) {
         this.playerOne = playerOne;
@@ -23,7 +23,12 @@ public class TicTacToeGame {
         if (currentCombinations.matches(".*(111|222).*")) {
             return true;
         }
-        return !currentCombinations.matches(".*([01]{3}|[02]{3}).*");
+        if (moveSwitch) {
+            return !currentCombinations.matches(".*([01]{3}).*");
+        } else {
+            return !currentCombinations.matches(".*([02]{3}).*");
+        }
+
     }
 
     public Player whoIsRoundWinner() {
@@ -39,11 +44,12 @@ public class TicTacToeGame {
     }
 
     public void nextPlayerMove() {
-        movesCount++;
-        if (movesCount % 2 != 0) {
+        if (moveSwitch) {
             playerOne.makeAMove(field, 1);
+            moveSwitch = false;
         } else {
             playerTwo.makeAMove(field, 2);
+            moveSwitch = true;
         }
     }
 
