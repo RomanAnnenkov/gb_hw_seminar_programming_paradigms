@@ -38,7 +38,6 @@ public class ConsoleView implements IView {
                 game.nextPlayerMove();
             }
             Player winner = game.whoIsRoundWinner();
-            printField(game.getField());
             if (winner == null) {
                 System.out.println("Ничья.");
             } else {

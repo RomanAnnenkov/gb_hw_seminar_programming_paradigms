@@ -11,7 +11,7 @@ public class TicTacToeGame {
     public TicTacToeGame(Player playerOne, Player playerTwo) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
-        this.field = TicTacToeField.getInstance();
+        this.field = new TicTacToeField();
     }
 
     public TicTacToeField getField() {
@@ -20,26 +20,21 @@ public class TicTacToeGame {
 
     public boolean isRoundOver() {
         String currentCombinations = field.getCombinations();
-
-        if (currentCombinations.contains("111") || currentCombinations.contains("222")) {
+        if (currentCombinations.matches(".*(111|222).*")) {
             return true;
         }
-        return currentCombinations.matches("[0,1]{3}|[0,2]{3}");
+        return !currentCombinations.matches(".*([01]{3}|[02]{3}).*");
     }
 
     public Player whoIsRoundWinner() {
-        String winnerCombinations = field.getCombinations();
-
-        long countOne = winnerCombinations.chars().filter(x -> x== '1').count();
-        long countTwo = winnerCombinations.chars().filter(x -> x== '2').count();
-
-        if (countOne > countTwo) {
+        String combinations = field.getCombinations();
+        field.clearField();
+        if (combinations.contains("111")) {
             return playerOne;
         }
-        if (countTwo > countOne) {
+        if (combinations.contains("222")) {
             return playerTwo;
         }
-        field.clearField();
         return null;
     }
 
