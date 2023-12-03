@@ -19,17 +19,14 @@ public class RobotPlayer extends Player {
         int indexCombination = findCombinationIndexForMakeMove(combinations, marker);
 
         int[] targetCombinationCoordinates = getCombinationCoordinates(indexCombination);
-        int xIndex = 0;
-        int yIndex = 1;
+
         for (int i = 0; i < targetCombinationCoordinates.length; i += 2) {
-            int x = targetCombinationCoordinates[xIndex];
-            int y = targetCombinationCoordinates[yIndex];
+            int x = targetCombinationCoordinates[i];
+            int y = targetCombinationCoordinates[i + 1];
             if (field.getDotValue(y, x) == 0) {
                 move(y, x, marker, field);
                 return;
             }
-            xIndex += 2;
-            yIndex += 2;
         }
     }
 
@@ -37,7 +34,6 @@ public class RobotPlayer extends Player {
         String[] combinationsArray = combinations.split(" ");
         for (int i = 0; i < combinationsArray.length; i++) {
             if (combinationsArray[i].matches(".*(110|011|101|220|022|202).*")) {
-                System.out.println(i);
                 return i;
             }
         }
@@ -50,6 +46,12 @@ public class RobotPlayer extends Player {
         for (int i = 0; i < combinationsArray.length; i++) {
             String currentCombination = combinationsArray[i];
             if (currentCombination.contains("000")) {
+                return i;
+            }
+        }
+        for (int i = 0; i < combinationsArray.length; i++) {
+            String currentCombination = combinationsArray[i];
+            if (currentCombination.contains("0")) {
                 return i;
             }
         }

@@ -42,6 +42,7 @@ public class TicTacToeField {
         for (int[] horizontalMoves : field) {
             Arrays.fill(horizontalMoves, 0);
         }
+        renewCombinations = true;
     }
 
 }
