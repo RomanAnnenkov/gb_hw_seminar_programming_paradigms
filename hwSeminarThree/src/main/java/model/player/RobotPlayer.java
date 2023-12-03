@@ -24,8 +24,8 @@ public class RobotPlayer extends Player {
         for (int i = 0; i < targetCombinationCoordinates.length; i += 2) {
             int x = targetCombinationCoordinates[xIndex];
             int y = targetCombinationCoordinates[yIndex];
-            if (field.getDotValue(x, y) == 0) {
-                move(x, y, marker, field);
+            if (field.getDotValue(y, x) == 0) {
+                move(y, x, marker, field);
                 return;
             }
             xIndex += 2;
@@ -70,9 +70,9 @@ public class RobotPlayer extends Player {
         };
     }
 
-    private void move(int x, int y, int marker, TicTacToeField field) {
-        System.out.println("Ходит " + this.getName() + " (x,y): " + x + "," + y);
-        field.setMark(x, y, marker);
+    private void move(int y, int x, int marker, TicTacToeField field) {
+        System.out.println("Ходит " + this.getName() + " (y,x): " + (y + 1) + "," + (x + 1));
+        field.setMark(y, x, marker);
     }
 
 }

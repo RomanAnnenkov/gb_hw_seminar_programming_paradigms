@@ -28,12 +28,12 @@ public class TicTacToeField {
         return combinations;
     }
 
-    public void setMark(int x, int y, int mark) {
+    public void setMark(int y, int x, int mark) {
         field[x][y] = mark;
         renewCombinations = true;
     }
 
-    public int getDotValue(int x, int y) {
+    public int getDotValue(int y, int x) {
         return field[x][y];
     }
 

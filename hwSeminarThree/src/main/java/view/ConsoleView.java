@@ -26,16 +26,17 @@ public class ConsoleView implements IView {
                 game = new TicTacToeGame(new RobotPlayer("RobotP1"), new RobotPlayer("RobotP2"));
                 break;
             case "1":
-                game = new TicTacToeGame(new HumanPlayer(getPlayerName()), new RobotPlayer("RobotP2"));
+                game = new TicTacToeGame(new HumanPlayer(getPlayerName(1)), new RobotPlayer("RobotP2"));
                 break;
             case "2":
-                game = new TicTacToeGame(new HumanPlayer(getPlayerName()), new HumanPlayer(getPlayerName()));
+                game = new TicTacToeGame(new HumanPlayer(getPlayerName(1)), new HumanPlayer(getPlayerName(2)));
         }
 
         while (true) {
+            printField(game.getField());
             while (!game.isRoundOver()) {
-                printField(game.getField());
                 game.nextPlayerMove();
+                printField(game.getField());
             }
             Player winner = game.whoIsRoundWinner();
             if (winner == null) {
@@ -56,7 +57,7 @@ public class ConsoleView implements IView {
     public void printField(TicTacToeField field) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                switch (field.getDotValue(j, i)) {
+                switch (field.getDotValue(i, j)) {
                     case 0:
                         System.out.print("_");
                         break;
@@ -71,8 +72,8 @@ public class ConsoleView implements IView {
         }
     }
 
-    public String getPlayerName() {
-        System.out.print("Введите имя игрока: ");
+    public String getPlayerName(int marker) {
+        System.out.print("Введите имя игрока" + marker + ": ");
         return scanner.nextLine();
     }
 

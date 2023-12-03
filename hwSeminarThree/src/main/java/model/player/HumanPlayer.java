@@ -17,19 +17,19 @@ public class HumanPlayer extends Player {
         boolean possibleMove = false;
         while (!possibleMove) {
             String[] coordinates = getCoordinatesFromUser();
-            int x = Integer.parseInt(coordinates[0]);
-            int y = Integer.parseInt(coordinates[1]);
-            if (field.getDotValue(x, y) == 0) {
+            int y = Integer.parseInt(coordinates[0]) - 1;
+            int x = Integer.parseInt(coordinates[1]) - 1;
+            if (field.getDotValue(y, x) == 0) {
                 possibleMove = true;
-                field.setMark(x, y, marker);
+                field.setMark(y, x, marker);
             }
         }
     }
 
     private String[] getCoordinatesFromUser() {
-        System.out.print("Ходит " + this.getName() + " (x,y): ");
+        System.out.print("Ходит " + this.getName() + " (y,x): ");
         String input = scanner.nextLine();
-        while (!input.matches("[0-2],[0-2]")) {
+        while (!input.matches("[1-3],[1-3]")) {
             System.out.print("Ход не возможен, повторите: ");
             input = scanner.nextLine();
         }
