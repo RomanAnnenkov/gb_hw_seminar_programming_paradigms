@@ -55,17 +55,19 @@ public class ConsoleView implements IView {
     }
 
     public void printField(TicTacToeField field) {
+        System.out.println("  1 2 3");
         for (int i = 0; i < 3; i++) {
+            System.out.print(i+1);
             for (int j = 0; j < 3; j++) {
                 switch (field.getDotValue(i, j)) {
                     case 0:
-                        System.out.print("_");
+                        System.out.print(" _");
                         break;
                     case 1:
-                        System.out.print("Х");
+                        System.out.print(" Х");
                         break;
                     case 2:
-                        System.out.print("O");
+                        System.out.print(" O");
                 }
             }
             System.out.println();
