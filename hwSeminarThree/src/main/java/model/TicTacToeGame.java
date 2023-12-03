@@ -23,12 +23,10 @@ public class TicTacToeGame {
         if (currentCombinations.matches(".*(111|222).*")) {
             return true;
         }
-        if (moveSwitch) {
-            return !currentCombinations.matches(".*([01]{3}).*");
-        } else {
-            return !currentCombinations.matches(".*([02]{3}).*");
+        if (currentCombinations.matches(".*([01]{3}|[02]{3}).*")) {
+            return false;
         }
-
+        return !currentCombinations.matches(".*0{2,3}.*");
     }
 
     public Player whoIsRoundWinner() {
